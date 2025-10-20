@@ -13,8 +13,8 @@ env:
 on:
   workflow_dispatch:
   # 取消此处注释代码可开启每日定时编译
-#  schedule:
-#    - cron: '0 23 * * *'  # UTC时间23点（北京时间次日7点）
+  schedule:
+    - cron: '0 23 * * *'  # UTC时间23点（北京时间次日7点）
     inputs:
       hook_method:
         description: hook模式(大部分情况manual即可，少数需切换sus su模式的场景才需要kprobes钩子)
