@@ -299,6 +299,7 @@ jobs:
             cp ./susfs4ksu/kernel_patches/fs/* ./common/fs/
             cp ./susfs4ksu/kernel_patches/include/linux/* ./common/include/linux/
             cd ./common
+            python3 -c "import re,glob;p=glob.glob('50_add_susfs_in_gki-*.patch')[0];s=open(p).read();parts=re.split(r'(?m)^(?=diff --git )',s);keep=[x for x in parts if not re.match(r'diff --git a/security/selinux/(hooks|selinuxfs)\.c',x)];print('[susfs] sections:',len(parts),'->',len(keep));open(p,'w').write(''.join(keep))"
             patch -p1 -F 3 < 50_add_susfs_in_gki-${{ env.ANDROID_VERSION }}-${{ env.KERNEL_VERSION }}.patch || true
             patch -p1 -N -F 3 < 69_hide_stuff.patch || true
             cd ..
